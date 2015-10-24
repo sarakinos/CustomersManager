@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-{{ title }}
+<h3>{{ title }}</h3>
+    <aside class="customer-nav">
+    {% block sidebar %}
+        {{ include("customers_manager/partials/customer_navigation.html.twig") }}
+    {% endblock %}
+    </aside>
     <table class="table table-bordered">
     {% for customer in customers %}
             <tr>
