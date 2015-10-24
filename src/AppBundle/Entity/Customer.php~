@@ -1,0 +1,68 @@
+<?php
+namespace AppBundle\Entity;
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 24/10/2015
+ * Time: 9:25 μμ
+ */
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="customer")
+ */
+class Customer
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank()
+     */
+    protected $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank()
+     */
+    protected $surname;
+
+    /**
+     * @ORM\Column(type="string", length=150)
+     * @Assert\NotBlank()
+     */
+    protected $city;
+
+    /**
+     * @ORM\Column(type="string", length=150)
+     * @Assert\NotBlank()
+     */
+    protected $country;
+
+    /**
+     * @ORM\Column(type="string", length=150)
+     * @Assert\NotBlank()
+     */
+    protected $address;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     */
+    protected $email;
+
+    /**
+     * @ORM\Column(type="integer", length=20)
+     * @Assert\NotBlank()
+     */
+    protected $phone;
+
+}

@@ -1,0 +1,7 @@
+customer_manager_home:
+    path: /
+    defaults: { _controller:AppBundle:Home:index}
+
+customer_manager_customers:
+    path: /customers
+    defaults: { _controller:AppBundle:Customers:index}

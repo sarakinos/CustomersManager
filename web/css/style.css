@@ -1,0 +1,13 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+.glyphicon{
+    margin-right: 10px;
+}
+.home-jumbo-image{
+    width: 380px;
+    height: 210px;
+}
