@@ -1,12 +1,23 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <h3>{{ title }}</h3>
-    <aside class="customer-nav">
+    <div class="customer-nav">
     {% block sidebar %}
         {{ include("customers_manager/partials/customer_navigation.html.twig") }}
     {% endblock %}
-    </aside>
+    </div>
     <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Firstname</td>
+                <td>Lastname</td>
+                <td>City</td>
+                <td>Country</td>
+                <td>Address</td>
+                <td>Email</td>
+                <td>Phone</td>
+            </tr>
+        </thead>
     {% for customer in customers %}
             <tr>
                 <td>{{ customer.firstname }}</td>

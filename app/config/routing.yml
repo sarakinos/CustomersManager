@@ -2,6 +2,14 @@ customer_manager_home:
     path: /
     defaults: { _controller:AppBundle:Home:index}
 
-customer_manager_customers:
+customer_manager_customers_index:
     path: /customers
     defaults: { _controller:AppBundle:Customers:index}
+
+customer_manager_customers_register:
+    path: /customers/register
+    defaults: { _controller:AppBundle:Customers:register}
+
+customer_manager_customers_add:
+    path: /customers/add
+    defaults: { _controller:AppBundle:Customers:add}

@@ -7,9 +7,8 @@ body{
 .glyphicon{
     margin-right: 10px;
 }
-.home-jumbo-image{
-    width: 380px;
-    height: 210px;
+.box-wrapper{
+    margin-top: 30px;
 }
 .customer-nav{
     margin-top: 20px;
