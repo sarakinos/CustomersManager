@@ -13,3 +13,40 @@ customer_manager_customers_register:
 customer_manager_customers_add:
     path: /customers/add
     defaults: { _controller:AppBundle:Customers:add}
+
+customer_manager_customers_update:
+    path: /customers/update/{id}
+    defaults: { _controller:AppBundle:Customers:update}
+
+customer_manager_customers_edit:
+    path: /customers/edit/{id}
+    defaults: { _controller:AppBundle:Customers:edit}
+
+customer_manager_customers_delete:
+    path: /customers/delete/{id}
+    defaults: { _controller:AppBundle:Customers:delete}
+
+customer_manager_appointment_index:
+    path: /appointments
+    defaults: { _controller:AppBundle:Appointments:index}
+
+customer_manager_appointment_register:
+    path: /appointments/register
+    defaults: { _controller:AppBundle:Appointments:register}
+
+customer_manager_appointment_add:
+    path: /appointments/add
+    defaults: { _controller:AppBundle:Appointments:add}
+
+#customer_manager_appointment_update:
+#    path: /appointments/update/{id}
+#    defaults: { _controller:AppBundle:Appointments:update}
+#
+#customer_manager_appointment_edit:
+#    path: /appointments/edit/{id}
+#    defaults: { _controller:AppBundle:Appointments:edit}
+#
+#customer_manager_appointment_delete:
+#    path: /appointments/delete/{id}
+#    defaults: { _controller:AppBundle:Appointments:delete}
+

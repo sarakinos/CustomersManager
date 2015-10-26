@@ -7,3 +7,9 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+     appointment_manager:
+             class:        AppBundle\DependencyInjection\AppointmentManager
+             arguments:    ["@doctrine.orm.entity_manager"]
+     customer_manager:
+                  class:        AppBundle\DependencyInjection\CustomerManager
+                  arguments:    ["@doctrine.orm.entity_manager"]

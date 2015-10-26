@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h3>{{ title }}</h3>
+    <div class="appointment-nav">
+        {% block sidebar %}
+            {{ include("customers_manager/partials/inner_appointment_navigation.html.twig") }}
+        {% endblock %}
+    </div>
+    {% for flashMessage in app.session.flashbag.get('actionInfo') %}
+        <div class="alert alert-warning">
+            <span class="glyphicon glyphicon-bookmark"></span>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <td>Title</td>
+            <td>Comment</td>
+            <td>Customer</td>
+            <td>Status</td>
+            <td>Date</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        </thead>
+        {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.title }}</td>
+                <td>{{ appointment.comments }}</td>
+                <td>{{ appointment.customerId }}</td>
+                <td>{{ appointment.isCompleted }}</td>
+                <td>{{ appointment.date|date() }}</td>
+                {#<td><a href="{{ path('customer_manager_appointment_edit',{'id':appointment.id}) }}">Edit</a></td>#}
+                {#<td><a href="{{ path('customer_manager_appointment_delete',{'id':appointment.id}) }}">Delete</a></td>#}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

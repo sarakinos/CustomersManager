@@ -3,10 +3,16 @@
 <h3>{{ title }}</h3>
     <div class="customer-nav">
     {% block sidebar %}
-        {{ include("customers_manager/partials/customer_navigation.html.twig") }}
+        {{ include("customers_manager/partials/inner_customers_navigation.html.twig") }}
     {% endblock %}
     </div>
-    <table class="table table-bordered">
+       {% for flashMessage in app.session.flashbag.get('actionInfo') %}
+           <div class="alert alert-warning">
+               <span class="glyphicon glyphicon-bookmark"></span>
+               {{ flashMessage }}
+           </div>
+       {% endfor %}
+    <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <td>Firstname</td>
@@ -16,6 +22,9 @@
                 <td>Address</td>
                 <td>Email</td>
                 <td>Phone</td>
+                <td>Birthday</td>
+                <td>Edit</td>
+                <td>Delete</td>
             </tr>
         </thead>
     {% for customer in customers %}
@@ -27,6 +36,9 @@
                 <td>{{ customer.address }}</td>
                 <td>{{ customer.email }}</td>
                 <td>{{ customer.phone }}</td>
+                <td>{{ customer.birthday|date("d/m/Y") }}</td>
+                <td><a href="{{ path('customer_manager_customers_edit',{'id':customer.id}) }}">Edit</a></td>
+                <td><a href="{{ path('customer_manager_customers_delete',{'id':customer.id}) }}">Delete</a></td>
             </tr>
         {% endfor %}
         </table>

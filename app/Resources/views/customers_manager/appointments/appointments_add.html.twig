@@ -2,7 +2,7 @@
 {% block body %}
     <h3>{{ title }}</h3>
     <div class="col-md-12">
-            {{ include("customers_manager/partials/inner_customers_navigation.html.twig") }}
+        {{ include("customers_manager/partials/inner_appointment_navigation.html.twig") }}
     </div>
     <span class="panel-alert">
        {% for flashMessage in app.session.flashbag.get('formSubmitionError') %}
@@ -13,14 +13,11 @@
     </span>
     <div>
         {{ form_start(registerForm) }}
-        {{ form_row(registerForm.firstname) }}
-        {{ form_row(registerForm.surname) }}
-        {{ form_row(registerForm.city) }}
-        {{ form_row(registerForm.country) }}
-        {{ form_row(registerForm.address) }}
-        {{ form_row(registerForm.phone) }}
-        {{ form_row(registerForm.birthday) }}
-        {{ form_row(registerForm.email) }}
+        {{ form_row(registerForm.title) }}
+        {{ form_row(registerForm.comments) }}
+        {{ form_row(registerForm.customer_id) }}
+        {{ form_row(registerForm.isCompleted) }}
+        {{ form_row(registerForm.date) }}
         {{ form_end(registerForm) }}
     </div>
 {% endblock %}

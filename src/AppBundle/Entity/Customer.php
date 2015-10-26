@@ -35,6 +35,11 @@ class Customer
     protected $surname;
 
     /**
+     * @ORM\Column(type="date")
+     * @Assert\NotBlank()
+     */
+    protected $birthday;
+    /**
      * @ORM\Column(type="string", length=150)
      * @Assert\NotBlank()
      */
@@ -242,5 +247,29 @@ class Customer
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set birthday
+     *
+     * @param \DateTime $birthday
+     *
+     * @return Customer
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * Get birthday
+     *
+     * @return \DateTime
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
     }
 }
