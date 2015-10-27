@@ -13,3 +13,9 @@ services:
      customer_manager:
                   class:        AppBundle\DependencyInjection\CustomerManager
                   arguments:    ["@doctrine.orm.entity_manager"]
+     helper_validator:
+                       class:        AppBundle\DependencyInjection\HelperValidator
+     remove_listener:
+             class: AppBundle\EventListener\RemoveListener
+             tags:
+                 - { name: doctrine.event_listener, event: preRemove }

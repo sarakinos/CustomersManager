@@ -38,15 +38,15 @@ customer_manager_appointment_add:
     path: /appointments/add
     defaults: { _controller:AppBundle:Appointments:add}
 
-#customer_manager_appointment_update:
-#    path: /appointments/update/{id}
-#    defaults: { _controller:AppBundle:Appointments:update}
-#
-#customer_manager_appointment_edit:
-#    path: /appointments/edit/{id}
-#    defaults: { _controller:AppBundle:Appointments:edit}
-#
-#customer_manager_appointment_delete:
-#    path: /appointments/delete/{id}
-#    defaults: { _controller:AppBundle:Appointments:delete}
+customer_manager_appointment_update:
+    path: /appointments/update/{id}
+    defaults: { _controller:AppBundle:Appointments:update}
+
+customer_manager_appointment_edit:
+    path: /appointments/edit/{id}
+    defaults: { _controller:AppBundle:Appointments:edit}
+
+customer_manager_appointment_delete:
+    path: /appointments/delete/{id}
+    defaults: { _controller:AppBundle:Appointments:delete}
 

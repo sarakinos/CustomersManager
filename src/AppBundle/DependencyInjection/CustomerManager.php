@@ -8,6 +8,7 @@
  */
 namespace AppBundle\DependencyInjection;
 
+use AppBundle\Entity\Customer;
 use Doctrine\ORM\EntityManager;
 
 class CustomerManager
@@ -19,31 +20,35 @@ class CustomerManager
         $this->em = $em;
     }
 
-    public function getCustomers()
+    public function getAll()
     {
         $customers = $this->em->getRepository("AppBundle:Customer")->findAll();
         return $customers;
     }
-    public function getCustomerArray()
+
+    public function getById($id)
     {
-        $customerArray = array();
-        $customers = $this->em->getRepository("AppBundle:Customer")->findAll();
-        foreach($customers as $customer){
-            $customerArray[$customer->getId()] = $customer->getSurname().",".$customer->getFirstname();
-        }
-        return $customerArray;
+        $appointment = $this->em->getRepository("AppBundle:Customer")->find($id);
+        return $appointment;
     }
-    public function addCustomer($customer)
+
+    public function add(Customer $appointment)
     {
-        $this->em->persist($customer);
+        $this->em->persist($appointment);
         $this->em->flush();
     }
 
-    public function checkId($id)
+    public function remove($id)
     {
-        if($id<0){
-            return false;
-        }
-        return true;
+        $appointment = $this->getById($id);
+        $this->em->remove($appointment);
+        $this->em->flush();
     }
+
+    public function update()
+    {
+        $this->em->flush();
+    }
+
+
 }

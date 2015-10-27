@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Customer;
+use AppBundle\Entity\Appointment;
 use AppBundle\Form\Type\CustomerType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -11,7 +12,7 @@ class CustomersController extends Controller
 {
     public function indexAction()
     {
-        $customers = $this->get('customer_manager')->getCustomers();
+        $customers = $this->get('customer_manager')->getAll();
 
         return $this->render('customers_manager/customers/customers_index.html.twig', array(
             'title' => 'Customers Managment - Index',
@@ -34,12 +35,11 @@ class CustomersController extends Controller
 
     public function editAction($id)
     {
-        if(!$this->get('customer_manager')->checkId($id)){
+        if(!$this->get('helper_validator')->checkId($id)){
             throw $this->createNotFoundException("Invalid id");
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $customer = $em->getRepository("AppBundle:Customer")->find($id);
+        $customer = $this->get('customer_manager')->getById($id);
         $registerForm = $this->createForm(new CustomerType(),$customer,array(
             'action' => $this->generateUrl('customer_manager_customers_update',array(
                 "id"=>$id
@@ -67,14 +67,14 @@ class CustomersController extends Controller
             return $this->redirectToRoute("customer_manager_customers_register");
         }
 
-        $this->get('customer_manager')->addCustomer($customer);
+        $this->get('customer_manager')->add($customer);
         $this->addFlash("actionInfo","Customer added successfuly");
         return $this->redirectToRoute("customer_manager_customers_index");
     }
 
     public function updateAction(Request $request,$id)
     {
-        $customer = $this->getDoctrine()->getRepository("AppBundle:Customer")->find($id);
+        $customer = $this->get('customer_manager')->getById($id);
         $registerForm = $this->createForm(new CustomerType(),$customer);
         $registerForm->handleRequest($request);
 
@@ -84,26 +84,19 @@ class CustomersController extends Controller
             return $this->redirectToRoute("customer_manager_customers_register");
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
+        $this->get('customer_manager')->update();
         $this->addFlash("actionInfo","Customer updated successfuly");
         return $this->redirectToRoute("customer_manager_customers_index");
     }
 
     public function deleteAction($id)
     {
-        if(!$this->get('customer_manager')->checkId($id)){
+        if(!$this->get('helper_validator')->checkId($id)){
             throw $this->createNotFoundException("Invalid id");
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $customer = $em->getRepository("AppBundle:Customer")->find($id);
-        $em->remove($customer);
-        $em->flush();
+        $this->get('customer_manager')->remove($id);
         $this->addFlash("actionInfo","Customer deleted successfuly");
         return $this->redirectToRoute("customer_manager_customers_index");
     }
-
-
-
 }

@@ -18,26 +18,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AppointmentType extends AbstractType
 {
-    private $customerManager;
-
-    public function __construct(CustomerManager $customerManager)
-    {
-        $this->customerManager = $customerManager;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $customers = $this->customerManager->getCustomerArray();
-
         $builder
             ->add('title','text')
             ->add('comments','textarea')
-//            ->add('customer','choice',array(
-//                'choices'=>$customers
-//            ))
             ->add('customer', 'entity', array(
                 'class' => 'AppBundle\Entity\Customer',
-
             ))
             ->add('isCompleted','checkbox',array(
                 'required'=>false
