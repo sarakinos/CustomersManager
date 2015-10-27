@@ -13,7 +13,7 @@
            </div>
        {% endfor %}
     <table class="table table-bordered table-hover">
-        <thead>
+        <thead class="text-center">
             <tr>
                 <td>Firstname</td>
                 <td>Lastname</td>
@@ -37,8 +37,8 @@
                 <td>{{ customer.email }}</td>
                 <td>{{ customer.phone }}</td>
                 <td>{{ customer.birthday|date("d/m/Y") }}</td>
-                <td><a href="{{ path('customer_manager_customers_edit',{'id':customer.id}) }}">Edit</a></td>
-                <td><a href="{{ path('customer_manager_customers_delete',{'id':customer.id}) }}">Delete</a></td>
+                <td><a href="{{ path('customer_manager_customers_edit',{'id':customer.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td><a href="{{ path('customer_manager_customers_delete',{'id':customer.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
         {% endfor %}
         </table>

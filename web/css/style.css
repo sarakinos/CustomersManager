@@ -16,3 +16,11 @@ body{
 table{
     margin-top: 20px;
 }
+
+table .editButton{
+    text-align: center;
+}
+
+table .deleteButton{
+    text-align: center;
+}

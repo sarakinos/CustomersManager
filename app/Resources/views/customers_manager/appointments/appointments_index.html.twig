@@ -13,7 +13,7 @@
         </div>
     {% endfor %}
     <table class="table table-bordered table-hover">
-        <thead>
+        <thead class="text-center">
         <tr>
             <td>Title</td>
             <td>Comment</td>
@@ -37,8 +37,8 @@
                     {% endif %}
                 </td>
                 <td>{{ appointment.date|date() }}</td>
-                <td><a href="{{ path('customer_manager_appointment_edit',{'id':appointment.id}) }}">Edit</a></td>
-                <td><a href="{{ path('customer_manager_appointment_delete',{'id':appointment.id}) }}">Delete</a></td>
+                <td class="editButton"><a href="{{ path('customer_manager_appointment_edit',{'id':appointment.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td class="deleteButton"><a href="{{ path('customer_manager_appointment_delete',{'id':appointment.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
         {% endfor %}
     </table>
