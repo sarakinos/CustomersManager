@@ -6,6 +6,7 @@ namespace AppBundle\Entity;
  * Date: 24/10/2015
  * Time: 9:25 μμ
  */
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -22,6 +23,10 @@ class Customer
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Appointment", mappedBy="customer")
+     */
+    protected $appointment;
     /**
      * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank()
@@ -70,6 +75,13 @@ class Customer
      */
     protected $phone;
 
+    /**
+     * Constructor of the class, there we initialize the appointments array
+     */
+    public function __construct()
+    {
+        $this->appointment = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -271,5 +283,43 @@ class Customer
     public function getBirthday()
     {
         return $this->birthday;
+    }
+
+    /**
+     * Add appointment
+     *
+     * @param \AppBundle\Entity\Appointment $appointment
+     *
+     * @return Customer
+     */
+    public function addAppointment(\AppBundle\Entity\Appointment $appointment)
+    {
+        $this->appointment[] = $appointment;
+
+        return $this;
+    }
+
+    /**
+     * Remove appointment
+     *
+     * @param \AppBundle\Entity\Appointment $appointment
+     */
+    public function removeAppointment(\AppBundle\Entity\Appointment $appointment)
+    {
+        $this->appointment->removeElement($appointment);
+    }
+
+    /**
+     * Get appointment
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAppointment()
+    {
+        return $this->appointment;
+    }
+    public function __toString()
+    {
+        return $this->surname." ".$this->firstname;
     }
 }

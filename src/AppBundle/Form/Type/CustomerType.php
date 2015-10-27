@@ -23,7 +23,10 @@ class CustomerType extends AbstractType
             ->add('country','text')
             ->add('address','text')
             ->add('phone','integer')
-            ->add('birthday','date')
+            ->add('birthday','date', array(
+                'widget'=>'text',
+                'format' => 'dd-MM-yyyy'
+            ))
             ->add('email','text')
             ->add('save', 'submit')
         ;

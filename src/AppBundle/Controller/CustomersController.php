@@ -11,7 +11,7 @@ class CustomersController extends Controller
 {
     public function indexAction()
     {
-        $customers = $this->getDoctrine()->getRepository("AppBundle:Customer")->findAll();
+        $customers = $this->get('customer_manager')->getCustomers();
 
         return $this->render('customers_manager/customers/customers_index.html.twig', array(
             'title' => 'Customers Managment - Index',
@@ -34,7 +34,7 @@ class CustomersController extends Controller
 
     public function editAction($id)
     {
-        if(!$this->checkCustomerId($id)){
+        if(!$this->get('customer_manager')->checkId($id)){
             throw $this->createNotFoundException("Invalid id");
         }
 
@@ -67,9 +67,7 @@ class CustomersController extends Controller
             return $this->redirectToRoute("customer_manager_customers_register");
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($customer);
-        $em->flush();
+        $this->get('customer_manager')->addCustomer($customer);
         $this->addFlash("actionInfo","Customer added successfuly");
         return $this->redirectToRoute("customer_manager_customers_index");
     }
@@ -94,7 +92,7 @@ class CustomersController extends Controller
 
     public function deleteAction($id)
     {
-        if(!$this->checkCustomerId($id)){
+        if(!$this->get('customer_manager')->checkId($id)){
             throw $this->createNotFoundException("Invalid id");
         }
 
@@ -106,12 +104,6 @@ class CustomersController extends Controller
         return $this->redirectToRoute("customer_manager_customers_index");
     }
 
-    private function checkCustomerId($id)
-    {
-        if($id<0){
-            return false;
-        }
-        return true;
-    }
+
 
 }

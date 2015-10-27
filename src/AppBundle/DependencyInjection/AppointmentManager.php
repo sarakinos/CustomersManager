@@ -27,8 +27,13 @@ class AppointmentManager
     }
     public function addAppointment(Appointment $appointment)
     {
+
         $this->em->persist($appointment);
         $this->em->flush();
         return true;
+    }
+    public function linkIdToCustomer($appointment)
+    {
+
     }
 }

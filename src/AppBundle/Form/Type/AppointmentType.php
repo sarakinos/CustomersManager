@@ -32,8 +32,12 @@ class AppointmentType extends AbstractType
         $builder
             ->add('title','text')
             ->add('comments','textarea')
-            ->add('customer_id','choice',array(
-                'choices'=>$customers
+//            ->add('customer','choice',array(
+//                'choices'=>$customers
+//            ))
+            ->add('customer', 'entity', array(
+                'class' => 'AppBundle\Entity\Customer',
+
             ))
             ->add('isCompleted','checkbox',array(
                 'required'=>false

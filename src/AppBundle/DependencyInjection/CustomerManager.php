@@ -33,4 +33,17 @@ class CustomerManager
         }
         return $customerArray;
     }
+    public function addCustomer($customer)
+    {
+        $this->em->persist($customer);
+        $this->em->flush();
+    }
+
+    public function checkId($id)
+    {
+        if($id<0){
+            return false;
+        }
+        return true;
+    }
 }

@@ -25,10 +25,11 @@ class Appointment
     protected $id;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="appointment")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    protected $customer_id;
+    protected $customer;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -61,30 +62,6 @@ class Appointment
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set customerId
-     *
-     * @param integer $customerId
-     *
-     * @return Appointment
-     */
-    public function setCustomerId($customerId)
-    {
-        $this->customer_id = $customerId;
-
-        return $this;
-    }
-
-    /**
-     * Get customerId
-     *
-     * @return integer
-     */
-    public function getCustomerId()
-    {
-        return $this->customer_id;
     }
 
     /**
@@ -181,5 +158,22 @@ class Appointment
     public function getIsCompleted()
     {
         return $this->isCompleted;
+    }
+
+    public function setCustomer(\AppBundle\Entity\Customer $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \AppBundle\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
     }
 }

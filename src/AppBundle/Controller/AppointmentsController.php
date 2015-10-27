@@ -39,7 +39,6 @@ class AppointmentsController extends Controller
     public function addAction(Request $request)
     {
         $appointmentManager = $this->get('appointment_manager');
-
         $appointment = new Appointment();
         $registerForm = $this->createForm(new AppointmentType($this->get('customer_manager')),
             $appointment,array(
