@@ -28,6 +28,10 @@ class Customer
      */
     protected $appointment;
     /**
+     * @ORM\OneToMany(targetEntity="Demand", mappedBy="customer")
+     */
+    protected $demand;
+    /**
      * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank()
      */
@@ -321,5 +325,39 @@ class Customer
     public function __toString()
     {
         return $this->surname." ".$this->firstname;
+    }
+
+    /**
+     * Add demand
+     *
+     * @param \AppBundle\Entity\Demand $demand
+     *
+     * @return Customer
+     */
+    public function addDemand(\AppBundle\Entity\Demand $demand)
+    {
+        $this->demand[] = $demand;
+
+        return $this;
+    }
+
+    /**
+     * Remove demand
+     *
+     * @param \AppBundle\Entity\Demand $demand
+     */
+    public function removeDemand(\AppBundle\Entity\Demand $demand)
+    {
+        $this->demand->removeElement($demand);
+    }
+
+    /**
+     * Get demand
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDemand()
+    {
+        return $this->demand;
     }
 }

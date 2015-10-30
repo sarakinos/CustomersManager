@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h3>{{ title }}</h3>
+    <div class="customer-nav">
+        {% block sidebar %}
+            {{ include("customers_manager/partials/inner_demands_navigation.html.twig") }}
+        {% endblock %}
+    </div>
+    {% for flashMessage in app.session.flashbag.get('actionInfo') %}
+        <div class="alert alert-warning">
+            <span class="glyphicon glyphicon-bookmark"></span>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <table class="table table-bordered table-hover">
+        <thead class="text-center">
+        <tr>
+            <td>Title</td>
+            <td>Body</td>
+            <td>Appointment</td>
+            <td>Customer</td>
+            <td>Posted</td>
+            <td>Expires</td>
+            <td>Status</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        </thead>
+        {% for demand in demands %}
+            <tr>
+                <td>{{ demand.title }}</td>
+                <td>{{ demand.body}}</td>
+                <td>{{ demand.appointment.title }}</td>
+                <td>{{ demand.customer.surname }} {{ demand.customer.firstname }}</td>
+                <td>{{ demand.posted | date("d/m/Y") }}</td>
+                <td>{{ demand.expires | date("d/m/Y") }}</td>
+                <td>
+                    {% if demand.isCompleted == '1' %}
+                        Fulfilled
+                    {% else %}
+                        Awaiting
+                    {% endif %}
+                </td>
+
+                {#<td><a href="{{ path('customer_manager_demands_edit',{'id':demand.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>#}
+                {#<td><a href="{{ path('customer_manager_demands_delete',{'id':demand.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></td>#}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

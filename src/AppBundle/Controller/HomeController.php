@@ -11,7 +11,6 @@ class HomeController extends Controller
 
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
         return $this->render("customers_manager/index.html.twig");
     }
 }

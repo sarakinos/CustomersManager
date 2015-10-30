@@ -50,3 +50,11 @@ customer_manager_appointment_delete:
     path: /appointments/delete/{id}
     defaults: { _controller:AppBundle:Appointments:delete}
 
+customer_manager_demand_index:
+    path: /demands
+    defaults: { _controller:AppBundle:Demand:index}
+
+customer_manager_demand_register:
+    path: /demands/register
+    defaults: { _controller:AppBundle:Demand:register}
+
