@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h3>{{ title }}</h3>
+    <div class="col-md-12">
+        {{ include("customers_manager/partials/inner_demands_navigation.html.twig") }}
+    </div>
+    <span class="panel-alert">
+       {% for flashMessage in app.session.flashbag.get('formSubmitionError') %}
+           <div class="flash-notice">
+               {{ flashMessage }}
+           </div>
+       {% endfor %}
+    </span>
+    <div>
+        {{ form_start(registerForm) }}
+        {{ form_errors(registerForm) }}
+        {{ form_row(registerForm.title) }}
+        {{ form_row(registerForm.body) }}
+        {{ form_row(registerForm.customer) }}
+        {{ form_row(registerForm.appointment) }}
+        {{ form_row(registerForm.expires) }}
+        {{ form_end(registerForm) }}
+    </div>
+{% endblock %}

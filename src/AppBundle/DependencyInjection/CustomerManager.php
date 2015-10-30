@@ -28,20 +28,20 @@ class CustomerManager
 
     public function getById($id)
     {
-        $appointment = $this->em->getRepository("AppBundle:Customer")->find($id);
-        return $appointment;
+        $customer = $this->em->getRepository("AppBundle:Customer")->find($id);
+        return $customer;
     }
 
-    public function add(Customer $appointment)
+    public function add(Customer $customer)
     {
-        $this->em->persist($appointment);
+        $this->em->persist($customer);
         $this->em->flush();
     }
 
     public function remove($id)
     {
-        $appointment = $this->getById($id);
-        $this->em->remove($appointment);
+        $customer = $this->getById($id);
+        $this->em->remove($customer);
         $this->em->flush();
     }
 

@@ -9,6 +9,7 @@
 namespace AppBundle\DependencyInjection;
 
 
+use AppBundle\Entity\Demand;
 use Doctrine\ORM\EntityManager;
 
 class DemandManager
@@ -23,5 +24,10 @@ class DemandManager
     {
         $demands = $this->em->getRepository("AppBundle:Demand")->findAll();
         return $demands;
+    }
+    public function add(Demand $demand)
+    {
+        $this->em->persist($demand);
+        $this->em->flush();
     }
 }

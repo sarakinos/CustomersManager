@@ -58,3 +58,7 @@ customer_manager_demand_register:
     path: /demands/register
     defaults: { _controller:AppBundle:Demand:register}
 
+customer_manager_demand_add:
+      path: /demands/add
+      defaults: { _controller:AppBundle:Demand:add}
+

@@ -176,4 +176,9 @@ class Appointment
     {
         return $this->customer;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }

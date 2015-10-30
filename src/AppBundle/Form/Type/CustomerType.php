@@ -1,4 +1,6 @@
 <?php
+
+namespace AppBundle\Form\Type;
 /**
  * Created by PhpStorm.
  * User: root
@@ -6,7 +8,7 @@
  * Time: 10:00 μμ
  */
 
-namespace AppBundle\Form\Type;
+
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

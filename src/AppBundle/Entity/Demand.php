@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="demand")
  */
 class Demand
@@ -234,5 +235,12 @@ class Demand
     public function getAppointment()
     {
         return $this->appointment;
+    }
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->posted = new \DateTime();
     }
 }
