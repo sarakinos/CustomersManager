@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\DependencyInjection\DemandManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,22 +20,25 @@ class DemandType extends AbstractType
             ->add('body','textarea')
             ->add('isCompleted','checkbox',array(
                 'label' => 'Status',
-                'required'=>false))
+                'required'=>false
+            ))
             ->add('expires','datetime')
             ->add('appointment', 'entity', array(
                 'class' => 'AppBundle\Entity\Appointment',
+                'empty_data'  => new Appointment(),
+                'empty_value' => "Undefined",
+                'required'=>false
             ))
             ->add('customer', 'entity', array(
                 'class' => 'AppBundle\Entity\Customer',
             ))
             ->add('submit','submit');
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'=>'AppBundle\Entity\Demand'
+            'data_class'=>'AppBundle\Entity\Demand',
         ));
     }
 

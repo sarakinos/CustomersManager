@@ -30,7 +30,7 @@
             <tr>
                 <td>{{ demand.title }}</td>
                 <td>{{ demand.body}}</td>
-                <td>{{ demand.appointment.title }}</td>
+                <td>{{ demand.appointment.title | default("Undefined") }}</td>
                 <td>{{ demand.customer.surname }} {{ demand.customer.firstname }}</td>
                 <td>{{ demand.posted | date("d/m/Y") }}</td>
                 <td>{{ demand.expires | date("d/m/Y") }}</td>
@@ -42,8 +42,8 @@
                     {% endif %}
                 </td>
 
-                {#<td><a href="{{ path('customer_manager_demands_edit',{'id':demand.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>#}
-                {#<td><a href="{{ path('customer_manager_demands_delete',{'id':demand.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></td>#}
+                <td><a href="{{ path('customer_manager_demand_edit',{'id':demand.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td><a href="{{ path('customer_manager_demand_delete',{'id':demand.id}) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
         {% endfor %}
     </table>

@@ -31,7 +31,8 @@ class Demand
      */
     protected $customer;
     /**
-     * @ORM\OneToOne(targetEntity="Appointment")
+     * @ORM\ManyToOne(targetEntity="Appointment")
+     * @ORM\JoinColumn(name="appointment_id", referencedColumnName="id")
      */
     protected $appointment;
     /**

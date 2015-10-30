@@ -25,9 +25,24 @@ class DemandManager
         $demands = $this->em->getRepository("AppBundle:Demand")->findAll();
         return $demands;
     }
+    public function getById($id)
+    {
+        $demand = $this->em->getRepository("AppBundle:Demand")->find($id);
+        return $demand;
+    }
     public function add(Demand $demand)
     {
         $this->em->persist($demand);
+        $this->em->flush();
+    }
+    public function remove($id)
+    {
+        $demand = $this->getById($id);
+        $this->em->remove($demand);
+        $this->em->flush();
+    }
+    public function update()
+    {
         $this->em->flush();
     }
 }

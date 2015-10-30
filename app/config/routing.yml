@@ -62,3 +62,15 @@ customer_manager_demand_add:
       path: /demands/add
       defaults: { _controller:AppBundle:Demand:add}
 
+customer_manager_demand_delete:
+    path: /demands/delete/{id}
+    defaults: { _controller:AppBundle:Demand:delete}
+
+customer_manager_demand_edit:
+    path: /demands/edit/{id}
+    defaults: { _controller:AppBundle:Demand:edit}
+
+customer_manager_demand_update:
+    path: /demands/update/{id}
+    defaults: { _controller:AppBundle:Demand:update}
+

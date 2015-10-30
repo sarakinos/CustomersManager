@@ -15,7 +15,9 @@ body{
 }
 table{
     margin-top: 20px;
+    text-align: center;
 }
+
 
 table .editButton{
     text-align: center;
