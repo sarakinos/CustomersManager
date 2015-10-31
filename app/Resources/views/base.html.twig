@@ -7,6 +7,8 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="stylesheet" href="{{ asset("css/style.css") }}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -18,9 +20,16 @@
     </head>
     <body>
         {{ include("customers_manager/partials/navigation.html.twig") }}
-        <div class="container">
-        {% block body %}{% endblock %}
+        <div class="container-fluid">
+            <div class="wrapper fill">
+                {% block body %}{% endblock %}
+            </div>
         </div>
+        <nav class="navbar navbar-fixed-bottom">
+            <footer class="container-fluid text-center">
+               <h4>Designed and Developed by Charalampos Sykovaridis</h4>
+            </footer>
+        </nav>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

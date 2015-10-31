@@ -1,26 +1,39 @@
 {% block navigation %}
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Customers Manager</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ path('customer_manager_home') }}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-                <li><a href="{{ path('customer_manager_customers_index') }}"><span class="glyphicon glyphicon-user"></span>Customers</a></li>
-                <li><a href="{{ path('customer_manager_appointment_index') }}"><span class="glyphicon glyphicon-list-alt"></span>Appointments</a></li>
-                <li><a href="{{ path('customer_manager_demand_index') }}"><span class="glyphicon glyphicon-play-circle"></span>Demands</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-inbox"></span>Services</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Customers Manager</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{{ path('customer_manager_home') }}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                        <li><a href="{{ path('customer_manager_customers_index') }}"><span class="glyphicon glyphicon-user"></span>Customers</a></li>
+                        <li><a href="{{ path('customer_manager_appointment_index') }}"><span class="glyphicon glyphicon-list-alt"></span>Appointments</a></li>
+                        <li><a href="{{ path('customer_manager_demand_index') }}"><span class="glyphicon glyphicon-play-circle"></span>Demands</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-inbox"></span>Services</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                    <ul class="nav navbar-nav">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li><a href="#">Logged as : {{ app.user }}</a></li>
+                            <li><a href="{{ path('logout') }}">Logout</a></li>
+                        {% endif %}
+
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+
+            </div><!-- /.container-fluid -->
+        </nav>
+    {% endif %}
 {% endblock %}

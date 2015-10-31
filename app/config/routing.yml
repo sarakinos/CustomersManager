@@ -74,3 +74,19 @@ customer_manager_demand_update:
     path: /demands/update/{id}
     defaults: { _controller:AppBundle:Demand:update}
 
+login_path:
+    path: /login
+    defaults: { _controller:AppBundle:Security:login}
+
+login_check:
+    path: /login_check
+    defaults: { _controller:AppBundle:Security:loginCheck}
+
+logout:
+    path: /logout
+
+register_path:
+    path: /register
+    defaults: { _controller:AppBundle:Security:register}
+
+

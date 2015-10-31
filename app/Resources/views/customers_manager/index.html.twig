@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-       <div class="entry-wrapper">
            <div class="jumbotron text-center">
-                  <h2>Customer Manager</h2>
+                  <h1>Customer Manager</h1>
            </div>
-           <div>
+           <div class="welcomeText">
                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis
                debitis doloremque ea ex exercitationem fuga illum ipsam laboriosam magnam
                minima minus molestiae, neque,
@@ -17,28 +16,20 @@
                nihil possimus quod ratione sapiente ullam!
                nihil possimus quod ratione sapiente ullam!
            </div>
-           <div class="row box-wrapper">
-               <div class="col-md-3 col-md-offset-1">
-                   <img weight="210px" width="300px" class="img-rounded" src="http://gt-hk.com/wp-content/uploads/2015/08/customer.jpg" alt="">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                   Aliquid ea itaque maiores neque nobis quaerat quos rerum. Dolore
-                   ducimus eaque eveniet, libero, molestias officiis omnis quam, quisquam
-                   ratione tempora tenetur?
-               </div>
-               <div class="col-md-3">
-                   <img weight="180px" width="300px" class="img-rounded" src="http://gt-hk.com/wp-content/uploads/2015/08/customer.jpg" alt="">
-                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                   Aliquid ea itaque maiores neque nobis quaerat quos rerum. Dolore
-                   ducimus eaque eveniet, libero, molestias officiis omnis quam, quisquam
-                   ratione tempora tenetur?
-               </div>
-               <div class="col-md-3">
-                   <img weight="210px" width="300px" class="img-rounded" src="http://gt-hk.com/wp-content/uploads/2015/08/customer.jpg" alt="">
-                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                   Aliquid ea itaque maiores neque nobis quaerat quos rerum. Dolore
-                   ducimus eaque eveniet, libero, molestias officiis omnis quam, quisquam
-                   ratione tempora tenetur?
-               </div>
-           </div>
-       </div>
+
+    <div class="boxes">
+         <div class="row box-wrapper collor-red">
+                  <div class="text-center">
+                      <img src="http://www.setmore.com/landing-page/spa/images/customer-bubbles.png" alt="...">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cupiditate, delectus, dignissimos dolores eos esse est eum ex expedita, fugit modi molestiae nam neque quas saepe similique soluta suscipit tempora.</p>
+                  </div>
+        </div>
+
+         <div class="row box-wrapper collor-cyan">
+             <div class="text-center">
+                 <img src="http://eserveinfosys.com/images/services/hire_dedicated_professional.png" alt="...">
+                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cupiditate, delectus, dignissimos dolores eos esse est eum ex expedita, fugit modi molestiae nam neque quas saepe similique soluta suscipit tempora.</p>
+             </div>
+        </div>
+    </div>
 {% endblock %}
