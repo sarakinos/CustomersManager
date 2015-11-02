@@ -33,6 +33,12 @@ class AppointmentManager
         return $appointment;
     }
 
+    public function getBy(array $criteria)
+    {
+        $appointments = $this->em->getRepository("AppBundle:Appointment")->findBy($criteria);
+        return $appointments;
+    }
+
     public function getByCustomer( $customer)
     {
         $appointments = $this->em->getRepository("AppBundle:Appointment")->findBy(array(
@@ -57,5 +63,19 @@ class AppointmentManager
     public function update()
     {
         $this->em->flush();
+    }
+
+    public function getTodayAppointments()
+    {
+
+        $query = $this->em->createQuery('
+            SELECT a FROM AppBundle:Appointment a
+             WHERE a.date > :today
+             ORDER BY a.date ASC
+
+        ')
+            ->setParameter('today', new \DateTime());
+        $appointments = $query->getResult();
+        return $appointments;
     }
 }

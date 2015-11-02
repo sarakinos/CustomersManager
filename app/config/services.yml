@@ -16,6 +16,9 @@ services:
      demand_manager:
                        class:        AppBundle\DependencyInjection\DemandManager
                        arguments:    ["@doctrine.orm.entity_manager"]
+     user_manager:
+                            class:        AppBundle\DependencyInjection\UserManager
+                            arguments:    ["@doctrine.orm.entity_manager"]
      helper_validator:
                        class:        AppBundle\DependencyInjection\HelperValidator
      remove_listener:

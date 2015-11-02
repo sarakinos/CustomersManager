@@ -24,20 +24,11 @@ table .deleteButton{
 /*Here is the custom css*/
 html,
 body {
-    background: #313131;
 
     font-family: 'Varela Round' !important;
-
-
-
 }
-.container-fluid{
 
-}
-.fill {
-    min-height: 100%;
-    height: 100%;
-}
+
 /*=== 2. Anchor Link ===*/
 a {
     color: #aaaaaa;

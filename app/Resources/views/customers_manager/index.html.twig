@@ -4,17 +4,30 @@
            <div class="jumbotron text-center">
                   <h1>Customer Manager</h1>
            </div>
-           <div class="welcomeText">
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis
-               debitis doloremque ea ex exercitationem fuga illum ipsam laboriosam magnam
-               minima minus molestiae, neque,
-               nihil possimus quod ratione sapiente ullam!
-               nihil possimus quod ratione sapiente ullam!
-               nihil possimus quod ratione sapiente ullam!
-               nihil possimus quod ratione sapiente ullam!
-               nihil possimus quod ratione sapiente ullam!
-               nihil possimus quod ratione sapiente ullam!
-               nihil possimus quod ratione sapiente ullam!
+           <div class="welcomeStats">
+               <div class="well">
+                   Registered customers : {{ registered_customers }}
+               </div>
+               <div class="well">
+                   Registered demands : {{ registered_demands }}
+               </div>
+               <div>
+                   <h2>Todays appointments</h2>
+                   <table class="table table-hover table-bordered">
+                           <tr>
+                               <td>Title</td>
+                               <td>Customer</td>
+                               <td>Date</td>
+                           </tr>
+                       {% for appointment in today_appointments %}
+                       <tr>
+                           <td>{{ appointment.title }}</td>
+                           <td>{{ appointment.customer }}</td>
+                           <td>{{ appointment.date|date() }}</td>
+                       </tr>
+                       {% endfor %}
+                   </table>
+               </div>
            </div>
 
     <div class="boxes">
