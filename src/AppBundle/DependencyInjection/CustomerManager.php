@@ -49,6 +49,4 @@ class CustomerManager
     {
         $this->em->flush();
     }
-
-
 }

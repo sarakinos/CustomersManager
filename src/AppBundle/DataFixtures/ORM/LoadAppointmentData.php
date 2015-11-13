@@ -13,7 +13,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Appointment;
 use Proxies\__CG__\AppBundle\Entity\Customer;
 
-
 class LoadAppointmentData implements FixtureInterface
 {
     /**

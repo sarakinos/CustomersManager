@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\DataFixtures\ORM;
+
 /**
  * Created by PhpStorm.
  * User: root
@@ -11,8 +12,6 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Demand;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-
-
 
 class LoadRequestData implements FixtureInterface
 {

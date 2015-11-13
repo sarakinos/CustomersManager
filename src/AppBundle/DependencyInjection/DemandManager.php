@@ -8,7 +8,6 @@
 
 namespace AppBundle\DependencyInjection;
 
-
 use AppBundle\Entity\Demand;
 use Doctrine\ORM\EntityManager;
 

@@ -14,7 +14,7 @@ class DemandController extends Controller
     {
         $demands = $this->get('demand_manager')->getAll();
 
-        return $this->render("customers_manager/demands/demands_index.html.twig",array(
+        return $this->render("customers_manager/demands/demands_index.html.twig", array(
             'title'=>'Demands Managment - Index',
             'demands'=>$demands
         ));
@@ -23,7 +23,7 @@ class DemandController extends Controller
     public function registerAction()
     {
         $demand = new Demand();
-        $registerForm = $this->createForm(new DemandType(),$demand,array(
+        $registerForm = $this->createForm(new DemandType(), $demand, array(
             'action' => $this->generateUrl('customer_manager_demand_add'),
             'method' => 'POST',
         ));
@@ -37,36 +37,39 @@ class DemandController extends Controller
     public function addAction(Request $request)
     {
         $demand = new Demand();
-        $registerForm = $this->createForm(new DemandType(),$demand,array(
+        $registerForm = $this->createForm(new DemandType(), $demand, array(
             'action' => $this->generateUrl('customer_manager_customers_add'),
             'method' => 'POST',
         ));
         $registerForm->handleRequest($request);
         //We need to add form validation here!
         $this->get('demand_manager')->add($demand);
-        $this->addFlash("actionInfo","Demand added successfuly");
+        $this->addFlash("actionInfo", "Demand added successfuly");
         return $this->redirectToRoute("customer_manager_demand_index");
     }
     public function deleteAction($id)
     {
-        if(!$this->get('helper_validator')->checkId($id)){
+        if (!$this->get('helper_validator')->checkId($id)) {
             throw $this->createNotFoundException("Invalid id");
         }
         $this->get('demand_manager')->remove($id);
-        $this->addFlash("actionInfo","Demand deleted successfuly");
+        $this->addFlash("actionInfo", "Demand deleted successfuly");
         return $this->redirectToRoute("customer_manager_demand_index");
     }
     public function editAction($id)
     {
-        if(!$this->get('helper_validator')->checkId($id)){
+        if (!$this->get('helper_validator')->checkId($id)) {
             throw $this->createNotFoundException("Invalid id");
         }
 
         $demand = $this->get('demand_manager')->getById($id);
-        $registerForm = $this->createForm(new DemandType(),$demand,array(
-            'action' => $this->generateUrl('customer_manager_demand_update',array(
+        $registerForm = $this->createForm(new DemandType(), $demand, array(
+            'action' => $this->generateUrl(
+                'customer_manager_demand_update',
+                array(
                 "id"=>$id
-            )),
+                )
+            ),
             'method' => 'POST',
         ));
         return $this->render('customers_manager/demands/demands_add.html.twig', array(
@@ -74,15 +77,15 @@ class DemandController extends Controller
             'registerForm' => $registerForm->createView()
         ));
     }
-    public function updateAction(Request $request,$id)
+    public function updateAction(Request $request, $id)
     {
         $demand = $this->get('demand_manager')->getById($id);
-        $registerForm = $this->createForm(new DemandType(),$demand);
+        $registerForm = $this->createForm(new DemandType(), $demand);
         $registerForm->handleRequest($request);
 
 
         $this->get('demand_manager')->update();
-        $this->addFlash("actionInfo","Demand updated successfuly");
+        $this->addFlash("actionInfo", "Demand updated successfuly");
         return $this->redirectToRoute("customer_manager_demand_index");
     }
 }

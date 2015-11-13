@@ -65,30 +65,6 @@ class Appointment
     }
 
     /**
-     * Set customerId
-     *
-     * @param integer $customerId
-     *
-     * @return Appointment
-     */
-    public function setCustomerId($customerId)
-    {
-        $this->customer_id = $customerId;
-
-        return $this;
-    }
-
-    /**
-     * Get customerId
-     *
-     * @return integer
-     */
-    public function getCustomerId()
-    {
-        return $this->customer_id;
-    }
-
-    /**
      * Set title
      *
      * @param string $title
@@ -184,27 +160,25 @@ class Appointment
         return $this->isCompleted;
     }
 
-    /**
-     * Set category
-     *
-     * @param \AppBundle\Entity\Customer $category
-     *
-     * @return Appointment
-     */
-    public function setCategory(\AppBundle\Entity\Customer $category = null)
+    public function setCustomer(\AppBundle\Entity\Customer $customer = null)
     {
-        $this->category = $category;
+        $this->customer = $customer;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get customer
      *
      * @return \AppBundle\Entity\Customer
      */
-    public function getCategory()
+    public function getCustomer()
     {
-        return $this->category;
+        return $this->customer;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

@@ -1,0 +1,60 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 30/10/2015
+ * Time: 1:08 μμ
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="request")
+ */
+class Request
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="request")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     */
+    protected $customer;
+    /**
+     * @ORM\OneToOne(targetEntity="Appointment")
+     */
+    protected $appointment;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    protected $title;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    protected $body;
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
+     */
+    protected $posted;
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
+     */
+    protected $expires;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $isCompleted;
+}

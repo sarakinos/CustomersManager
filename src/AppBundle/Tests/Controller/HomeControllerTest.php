@@ -29,7 +29,4 @@ class HomeControllerTest extends WebTestCase
         $crawler = $client->click($link);
         $this->assertContains('Customers Managment - Index', $client->getResponse()->getContent());
     }
-
 }
-
-

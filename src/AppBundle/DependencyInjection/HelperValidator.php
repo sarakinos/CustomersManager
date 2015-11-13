@@ -8,12 +8,11 @@
 
 namespace AppBundle\DependencyInjection;
 
-
 class HelperValidator
 {
     public function checkId($id)
     {
-        if($id<0){
+        if ($id<0) {
             return false;
         }
         return true;

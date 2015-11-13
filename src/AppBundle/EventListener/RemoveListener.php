@@ -23,27 +23,27 @@ class RemoveListener
 
         // perhaps you only want to act on some "Product" entity
         if ($entity instanceof Customer) {
-            $this->removeDemands($entityManager,$entity);
-            $this->removeAppointments($entityManager,$entity);
+            $this->removeDemands($entityManager, $entity);
+            $this->removeAppointments($entityManager, $entity);
         }
         if ($entity instanceof Appointment) {
-            $this->removeDemands($entityManager,$entity);
+            $this->removeDemands($entityManager, $entity);
         }
         $entityManager->flush();
     }
 
-    private function removeAppointments(EntityManager $entityManager,$entity)
+    private function removeAppointments(EntityManager $entityManager, $entity)
     {
         $appointments = $entityManager->getRepository("AppBundle:Appointment")->findBy(
             array(
                 "customer" => $entity
             )
         );
-        foreach($appointments as $appointment){
+        foreach ($appointments as $appointment) {
             $entityManager->remove($appointment);
         }
     }
-    private function removeDemands(EntityManager $entityManager,$entity)
+    private function removeDemands(EntityManager $entityManager, $entity)
     {
         $entityClassName = $this->normalizeEntityName($entity);
         $demands = $entityManager->getRepository("AppBundle:Demand")->findBy(
@@ -51,14 +51,14 @@ class RemoveListener
                 $entityClassName => $entity
             )
         );
-        foreach($demands as $demand){
+        foreach ($demands as $demand) {
             $entityManager->remove($demand);
         }
     }
     private function normalizeEntityName($entity)
     {
         $entityType = get_class($entity);
-        $exploded = explode('\\',$entityType);
+        $exploded = explode('\\', $entityType);
         return strtolower($exploded[2]);
     }
 }

@@ -12,16 +12,16 @@ class RegisterUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('_username','text')
+            ->add('_username', 'text')
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
-            ->add('firstname','text')
-            ->add('surname','text')
-            ->add('email','text')
-            ->add('>','submit',array(
+            ->add('firstname', 'text')
+            ->add('surname', 'text')
+            ->add('email', 'text')
+            ->add('>', 'submit', array(
                 'attr' => array(
                     'class' => 'login-button'
                 )

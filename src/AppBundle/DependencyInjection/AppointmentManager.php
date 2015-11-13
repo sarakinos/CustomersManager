@@ -39,7 +39,7 @@ class AppointmentManager
         return $appointments;
     }
 
-    public function getByCustomer( $customer)
+    public function getByCustomer($customer)
     {
         $appointments = $this->em->getRepository("AppBundle:Appointment")->findBy(array(
             'customer' => $customer

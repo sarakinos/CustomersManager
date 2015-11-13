@@ -15,7 +15,7 @@ class HomeController extends Controller
         $customers = $this->get('customer_manager')->getAll();
         $demands = $this->get('demand_manager')->getAll();
 
-        return $this->render("customers_manager/index.html.twig",array(
+        return $this->render("customers_manager/index.html.twig", array(
             'today_appointments' => $appointments,
             'registered_customers' => count($customers),
             'registered_demands' => count($demands)

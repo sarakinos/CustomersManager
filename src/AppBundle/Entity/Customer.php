@@ -1,5 +1,7 @@
 <?php
+
 namespace AppBundle\Entity;
+
 /**
  * Created by PhpStorm.
  * Author: Bampis Sykovatidis
