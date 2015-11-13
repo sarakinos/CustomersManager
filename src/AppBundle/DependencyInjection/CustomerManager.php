@@ -41,6 +41,9 @@ class CustomerManager
     public function remove($id)
     {
         $customer = $this->getById($id);
+        if (!$customer) {
+            return false;
+        }
         $this->em->remove($customer);
         $this->em->flush();
     }

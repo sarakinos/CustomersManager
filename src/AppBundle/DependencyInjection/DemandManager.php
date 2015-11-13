@@ -37,6 +37,9 @@ class DemandManager
     public function remove($id)
     {
         $demand = $this->getById($id);
+        if (!$demand) {
+            return false;
+        }
         $this->em->remove($demand);
         $this->em->flush();
     }
