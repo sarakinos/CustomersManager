@@ -3,7 +3,7 @@
 <h3>{{ title }}</h3>
     <div class="customer-nav">
     {% block sidebar %}
-        {{ include("customers_manager/partials/inner_customers_navigation.html.twig") }}
+        {{ include("customers_manager/partials/inner_navigation.html.twig") }}
     {% endblock %}
     </div>
        {% for flashMessage in app.session.flashbag.get('actionInfo') %}

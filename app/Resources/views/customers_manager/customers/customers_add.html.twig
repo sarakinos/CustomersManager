@@ -2,7 +2,7 @@
 {% block body %}
     <h3>{{ title }}</h3>
     <div class="col-md-12">
-            {{ include("customers_manager/partials/inner_customers_navigation.html.twig") }}
+            {{ include("customers_manager/partials/inner_navigation.html.twig") }}
     </div>
     <span class="panel-alert">
        {% for flashMessage in app.session.flashbag.get('formSubmitionError') %}

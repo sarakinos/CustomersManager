@@ -1,0 +1,15 @@
+{% block inner_naviagation %}
+    <ul class="nav navbar-nav">
+    <li>
+        <p class="navbar-btn">
+            <a class="btn btn-success" href="{{ path("customer_manager_index") }}">View</a>
+        </p>
+    </li>
+
+    <li>
+        <p class="navbar-btn">
+            <a class="btn btn-info" href="{{ path("customer_manager_register") }}">Add</a>
+        </p>
+    </li>
+</ul>
+{% endblock %}

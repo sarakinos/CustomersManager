@@ -74,6 +74,14 @@ customer_manager_demand_update:
     path: /demands/update/{id}
     defaults: { _controller:AppBundle:Demand:update}
 
+customer_manager_index:
+    path: /index
+    defaults: { _controller:AppBundle:Navigation:index}
+
+customer_manager_register:
+    path: /register
+    defaults: { _controller:AppBundle:Navigation:register}
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
