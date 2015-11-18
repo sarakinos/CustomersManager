@@ -79,8 +79,6 @@ class AppointmentsController extends Controller
         $registerForm->handleRequest($request);
 
         if (!$registerForm->isValid()) {
-            $validator = $this->get('validator');
-            $errors = $validator->validate($appointment);
             return $this->redirectToRoute("customer_manager_appointment_register");
         }
 
@@ -99,13 +97,11 @@ class AppointmentsController extends Controller
         $registerForm->handleRequest($request);
 
         if (!$registerForm->isValid()) {
-            $validator = $this->get('validator');
-            $errors = $validator->validate($appointment);
             return $this->redirectToRoute("customer_manager_appointment_register");
         }
 
         $this->get('appointment_manager')->update();
-        $this->addFlash("actionInfo", "Appointment updated successfuly");
+        $this->addFlash("actionInfo", "Appointment updated successfully");
         return $this->redirectToRoute("customer_manager_appointment_index");
     }
 
@@ -115,7 +111,7 @@ class AppointmentsController extends Controller
             throw $this->createNotFoundException("Invalid id");
         }
         $this->get('appointment_manager')->remove($id);
-        $this->addFlash("actionInfo", "Appointment deleted successfuly");
+        $this->addFlash("actionInfo", "Appointment deleted successfully");
         return $this->redirectToRoute("customer_manager_appointment_index");
     }
 }
