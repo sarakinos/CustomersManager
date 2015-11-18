@@ -74,6 +74,18 @@ customer_manager_demand_update:
     path: /demands/update/{id}
     defaults: { _controller:AppBundle:Demand:update}
 
+customer_manager_services_index:
+    path: /services
+    defaults: { _controller:AppBundle:Services:index}
+
+customer_manager_services_custom_message:
+    path: /services/custom
+    defaults: { _controller:AppBundle:Services:customMessage}
+
+customer_manager_send_message:
+    path: /message/send
+    defaults: { _controller:AppBundle:Mailer:send}
+
 customer_manager_index:
     path: /index
     defaults: { _controller:AppBundle:Navigation:index}

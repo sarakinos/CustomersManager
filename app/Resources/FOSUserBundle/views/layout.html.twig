@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% block fos_user_content %}{% endblock %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome to Customers Manager</h1>
+        </div>
+        {% block fos_user_content %}{% endblock %}
+        {% if path(app.request.attributes.get('_route')) == '/login' %}
+            <span>Not registered?Please click <a href="{{path('fos_user_registration_register')}}">here!</a></span>
+        {% elseif path(app.request.attributes.get('_route')) == '/register/' %}
+            <span>Need to login?Please click <a href="{{path('fos_user_security_login')}}">here!</a></span>
+        {% endif %}
+    </div>
 {% endblock %}
