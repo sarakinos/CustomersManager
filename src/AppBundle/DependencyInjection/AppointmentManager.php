@@ -68,16 +68,24 @@ class AppointmentManager
         $this->em->flush();
     }
 
-    public function getTodayAppointments()
+    /**
+     * @param integer
+     * @return array
+     * Parameter for the function is an integer.Function calculates the appointments from
+     * today to the date emerses by the integer given as parameter.
+     * If we want to grab todays appointment we can leave $days to its default value
+     */
+    public function getAppointmentsByQuery($days = 1)
     {
-
-        $query = $this->em->createQuery('
+        $query = $this->em->createQuery("
             SELECT a FROM AppBundle:Appointment a
-             WHERE a.date > :today
+             WHERE a.date BETWEEN
+             CURRENT_DATE()
+             AND
+             DATE_ADD(CURRENT_DATE(), :days, 'DAY')
              ORDER BY a.date ASC
 
-        ')
-            ->setParameter('today', new \DateTime());
+        ")->setParameter('days',$days);
         $appointments = $query->getResult();
         return $appointments;
     }

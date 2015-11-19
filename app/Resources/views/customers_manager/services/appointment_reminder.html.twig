@@ -1,0 +1,31 @@
+{% extends 'customers_manager/services/index.html.twig' %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3>Appointments of the week</h3></div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3>Appointments of the month</h3></div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <thead class="text-center">
+                <tr>
+                    <td>Title</td>
+                    <td>Customer</td>
+                    <td>Date</td>
+                </tr>
+                </thead>
+                {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.title }}</td>
+                        <td>{{ appointment.customer }}</td>
+                        <td>{{ appointment.date|date() }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

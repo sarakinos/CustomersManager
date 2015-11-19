@@ -82,6 +82,10 @@ customer_manager_services_custom_message:
     path: /services/custom
     defaults: { _controller:AppBundle:Services:customMessage}
 
+customer_manager_services_appointment_reminder:
+    path: /services/appointment-reminder
+    defaults: { _controller:AppBundle:Services:appointmentReminder}
+
 customer_manager_send_message:
     path: /message/send
     defaults: { _controller:AppBundle:Mailer:send}
