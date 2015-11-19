@@ -1,5 +1,12 @@
 {% extends 'customers_manager/services/index.html.twig' %}
 
 {% block content %}
-    <a href="{{path('customer_manager_send_message')}}">Send message</a>
+    {{ form_start(sendForm) }}
+    {{ form_errors(sendForm) }}
+    {{ form_row(sendForm.subject) }}
+    {{ form_row(sendForm.from) }}
+    {{ form_row(sendForm.to) }}
+    {{ form_row(sendForm.body) }}
+    {{ form_row(sendForm.send) }}
+    {{ form_end(sendForm) }}
 {% endblock %}

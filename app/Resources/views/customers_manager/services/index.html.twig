@@ -6,11 +6,15 @@
     </div>
 {% include "customers_manager/partials/services_navigation.html.twig" %}
 
-{% block content %}
-   <div class="col-md-6">
-    There is the content
-    </div> 
-{% endblock %}
-
-
+    <div class="col-md-6">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="alert alert-warning">
+                <span class="glyphicon glyphicon-bookmark"></span>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        {% block content %}
+            There is the content
+        {% endblock %}
+    </div>
 {% endblock %}

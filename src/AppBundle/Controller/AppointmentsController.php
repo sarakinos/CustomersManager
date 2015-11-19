@@ -16,7 +16,7 @@ class AppointmentsController extends Controller
 
         return $this->render('customers_manager/appointments/appointments_index.html.twig', array(
             'title' => 'Appointments Managment - Index',
-            'appointments'=>$appointments
+            'appointments' => $appointments
         ));
     }
 
@@ -27,11 +27,10 @@ class AppointmentsController extends Controller
             new AppointmentType($this->get('customer_manager')),
             $appointment,
             array(
-            'action' => $this->generateUrl('customer_manager_appointment_add'),
-            'method' => 'POST',
+                'action' => $this->generateUrl('customer_manager_appointment_add'),
+                'method' => 'POST',
             )
-        )
-        ;
+        );
 
         return $this->render('customers_manager/appointments/appointments_add.html.twig', array(
             'title' => 'Appointment Managment - Add',
