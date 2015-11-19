@@ -16,6 +16,12 @@ services:
      demand_manager:
                        class:        AppBundle\DependencyInjection\DemandManager
                        arguments:    ["@doctrine.orm.entity_manager"]
+     notify_manager:
+                            class:        AppBundle\DependencyInjection\NotifyManager
+                            arguments:    ["@doctrine.orm.entity_manager","@service_container"]
+     mailer_manager:
+                                 class:        AppBundle\DependencyInjection\MailerManager
+                                 arguments: ['@service_container','@mailer','@templating']
      user_manager:
                             class:        AppBundle\DependencyInjection\UserManager
                             arguments:    ["@doctrine.orm.entity_manager"]

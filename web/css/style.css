@@ -329,9 +329,15 @@ label:hover:before {
 footer{
     color: white;
     background: #313131;
-    margin-top: 45px;
+
 }
 
 .boxes{
     margin-bottom: 40px;
+}
+
+.fill{
+    position: relative;
+    bottom: 30px;
+    min-height: 100%;
 }

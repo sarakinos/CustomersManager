@@ -1,10 +1,29 @@
 {% extends 'customers_manager/services/index.html.twig' %}
 
 {% block content %}
+    <a class="btn btn-success" href="{{ path('customer_manager_services_appointment_notify', {'by': 'month'}) }}">Notify of the Month</a>
+    <a class="btn btn-default" href="{{ path('customer_manager_services_appointment_notify', {'by': 'week'}) }}">Notify of the Week</a>
     <div class="panel panel-default">
-        <div class="panel-heading"><h3>Appointments of the week</h3></div>
+        <div class="panel-heading">
+            <h3>Appointments of the week</h3>
+        </div>
         <div class="panel-body">
-            Panel content
+            <table class="table table-bordered table-hover">
+                <thead class="text-center">
+                <tr>
+                    <td>Title</td>
+                    <td>Customer</td>
+                    <td>Date</td>
+                </tr>
+                </thead>
+                {% for appointment in appointmentsOfTheWeek %}
+                    <tr>
+                        <td>{{ appointment.title }}</td>
+                        <td>{{ appointment.customer }}</td>
+                        <td>{{ appointment.date|date() }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
     <div class="panel panel-default">
@@ -18,7 +37,7 @@
                     <td>Date</td>
                 </tr>
                 </thead>
-                {% for appointment in appointments %}
+                {% for appointment in appointmentsOfTheMonth %}
                     <tr>
                         <td>{{ appointment.title }}</td>
                         <td>{{ appointment.customer }}</td>

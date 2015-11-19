@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mail;
 use AppBundle\Form\Type\CustomMailType;
-use AppBundle\DependencyInjection\AppointmentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ServicesController extends Controller
@@ -36,10 +35,24 @@ class ServicesController extends Controller
 
     public function appointmentReminderAction()
     {
-        $appointments = $this->get('appointment_manager')->getAppointmentsByQuery(30);
-        return $this->render('customers_manager/services/appointment_reminder.html.twig',
+        $appointmentsOfTheWeek = $this->get('appointment_manager')->getAppointmentsByQuery(7);
+        $appointmentsOfTheMonth = $this->get('appointment_manager')->getAppointmentsByQuery(30);
+        return $this->render(
+            'customers_manager/services/appointment_reminder.html.twig',
             array(
-                'appointments' => $appointments
-            ));
+                'appointmentsOfTheWeek' => $appointmentsOfTheWeek,
+                'appointmentsOfTheMonth' => $appointmentsOfTheMonth
+                )
+        )
+        ;
+    }
+
+    public function appointmentNotifyAction($by)
+    {
+        $notifyManager = $this->get('notify_manager');
+        if ($by == 'week') {
+            $notifyManager->notifyBy(0);
+        }
+        $this->render('customers_manager/services/appointment_reminder.html.twig');
     }
 }
