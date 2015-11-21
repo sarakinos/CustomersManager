@@ -9,6 +9,8 @@
 namespace AppBundle\DependencyInjection;
 
 use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\Appointment;
+use AppBundle\Entity\Customer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class NotifyManager
@@ -38,9 +40,9 @@ class NotifyManager
         switch ($setting) {
             case 0:
                 $appointmentManager = new AppointmentManager($this->em);
+                //Gets appointments for 7 days ahead of now
                 $appointments = $appointmentManager->getAppointmentsByQuery(7);
                 $mailerManager = new MailerManager($this->container);
-
                 $mailerManager->sendAppointmentNotification($appointments);
                 break;
             case 1:

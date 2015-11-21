@@ -13,7 +13,6 @@ class AppointmentsController extends Controller
     {
         $appointmentManager = $this->get("appointment_manager");
         $appointments = $appointmentManager->getAll();
-
         return $this->render('customers_manager/appointments/appointments_index.html.twig', array(
             'title' => 'Appointments Managment - Index',
             'appointments' => $appointments

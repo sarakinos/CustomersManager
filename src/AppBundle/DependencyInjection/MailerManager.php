@@ -10,9 +10,13 @@
 
 namespace AppBundle\DependencyInjection;
 
-
+use AppBundle\Entity\Mail;
+use AppBundle\Form\Type\CustomMailType;
 use Symfony\Component\DependencyInjection\Container;
+use AppBundle\Entity\Appointment;
+use AppBundle\Entity\Customer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\Form;
 
 class MailerManager
 {
@@ -26,23 +30,57 @@ class MailerManager
     /**
      * @param $sendForm
      * @return bool
-     * @throws \Twig_Error
-     * Gets the form with the desired message,subject,to and from as a parameter. Extracts the details and delivers
-     * the message. Returns status and sets the flash message
+     * Calls send mail function for custom mail service
      */
     public function sendCustomMail($sendForm)
     {
+        $mail = $this->extractMailParameters($sendForm);
+        if ($mail === false) {
+            return false;
+        }
+        $this->sendMail($mail);
+        return true;
+    }
+
+    /**
+     * @param $appointments
+     * @return bool
+     * Calls send mail function for appointment reminder service
+     */
+    public function sendAppointmentNotification($appointments)
+    {
+        foreach ($appointments as $appointment) {
+            $mail = $this->extractMailParameters($appointment);
+            if ($mail === false) {
+                return false;
+            }
+            $this->sendMail($mail, $appointment);
+        }
+        return true;
+    }
+
+    /**
+     * @param $mail
+     * @param null $appointment
+     * @return bool
+     * @throws \Twig_Error
+     * Main mail send function , creates Swift Message instance and sends the mail.
+     * Also configures the flash message for the template
+     */
+    private function sendMail($mail, $appointment = null)
+    {
+        $mailParameter = $this->generateTemplateParameters($mail, $appointment);
+        $mailTemplate = $mailParameter['mailTemplate'];
+        $templateValues = $mailParameter['templateValues'];
+
         $message = \Swift_Message::newInstance()
-            ->setSubject($sendForm->get('subject')->getData())
-            ->setFrom($sendForm->get('to')->getData()->getEmail())
-            ->setTo($sendForm->get('to')->getData()->getEmail())
+            ->setSubject($mail->getSubject())
+            ->setFrom($mail->getFrom())
+            ->setTo($mail->getTo()->getEmail())
             ->setBody(
                 $this->container->get('templating')->render(
-                    'customers_manager/emails/custom_email.html.twig',
-                    array(
-                        'customer' => $sendForm->get('to')->getData(),
-                        'body' => $sendForm->get('body')->getData()
-                    )
+                    $mailTemplate,
+                    $templateValues
                 ),
                 'text/html'
             );
@@ -56,8 +94,61 @@ class MailerManager
         $this->container->get('session')->getFlashBag()->add('notice', 'Message doesnt sent!');
         return false;
     }
-    public function sendAppointmentNotification($appointments)
-    {
 
+    /**
+     * @param $container
+     * @return Mail|bool
+     * Function gets the container with the mail parameters, decides if its a form (custom mail)
+     * or an appointment (appointment reminder) and extract the data into a mail object
+     */
+    private function extractMailParameters($container)
+    {
+        if ($container instanceof Form) {
+            $mail = new Mail();
+            $mail->setFrom($this->container->getParameter('mailer_user'));
+            $mail->setTo($container->get('to')->getData());
+            $mail->setBody($container->get('body')->getData());
+            $mail->setSubject($container->get('subject')->getData());
+            return $mail;
+        }
+        if ($container instanceof Appointment) {
+            $mail = new Mail();
+            $mail->setFrom($this->container->getParameter('mailer_user'));
+            $mail->setTo($container->getCustomer());
+            $mail->setSubject('Appointment Reminder');
+            return $mail;
+        }
+        return false;
+    }
+
+    /**
+     * @param $mail
+     * @param null $appointment
+     * @return array
+     * Checks if previous action is from custom mail or appointment reminder service and sets the appropriate
+     * template and values. Parameters are returned using an array
+     */
+    private function generateTemplateParameters($mail, $appointment = null)
+    {
+        if ($appointment!=null) {
+            $mailTemplate = 'customers_manager/emails/appointment_reminder.html.twig';
+            $templateValues = array(
+                'appointment' => $appointment,
+                'customer' => $appointment->getCustomer()
+            );
+            return array(
+                'mailTemplate' => $mailTemplate,
+                'templateValues' => $templateValues
+            );
+        }
+            $mailTemplate = 'customers_manager/emails/custom_email.html.twig';
+            $templateValues = array(
+                'customer' => $mail->getTo(),
+                'body' => $mail->getBody()
+            );
+            return array(
+            'mailTemplate' => $mailTemplate,
+            'templateValues' => $templateValues
+            );
     }
 }

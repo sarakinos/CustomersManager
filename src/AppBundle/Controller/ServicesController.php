@@ -53,6 +53,6 @@ class ServicesController extends Controller
         if ($by == 'week') {
             $notifyManager->notifyBy(0);
         }
-        $this->render('customers_manager/services/appointment_reminder.html.twig');
+        return $this->appointmentReminderAction();
     }
 }
