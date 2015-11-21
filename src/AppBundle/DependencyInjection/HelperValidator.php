@@ -17,7 +17,10 @@ class HelperValidator
      */
     public function checkId($id)
     {
-        if ($id<1) {
+        if (!is_numeric($id)) {
+            return false;
+        }
+        if ($id <= 0) {
             return false;
         }
         return true;

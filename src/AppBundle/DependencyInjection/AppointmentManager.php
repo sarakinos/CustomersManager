@@ -56,7 +56,7 @@ class AppointmentManager
     public function remove($id)
     {
         $appointment = $this->getById($id);
-        if (!$appointment) {
+        if ($appointment === null) {
             return false;
         }
         $this->em->remove($appointment);
