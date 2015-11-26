@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59b0e058-62d7-47c8-b465-f2cf1c18692a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/customers_manager/emails/birthday_wishes.html.twig" />
+    <list default="true" id="59b0e058-62d7-47c8-b465-f2cf1c18692a" name="Default" comment="Birthday wishes functionality added. Created controller , added twig templates and routing . Also altered the MailerManager to handle birthday mails and added some comments">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/customers_manager/emails/appointment_reminder.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/customers_manager/emails/appointment_reminder.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/customers_manager/partials/services_navigation.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/customers_manager/partials/services_navigation.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ServicesController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ServicesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DependencyInjection/CustomerManager.php" afterPath="$PROJECT_DIR$/src/AppBundle/DependencyInjection/CustomerManager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DependencyInjection/MailerManager.php" afterPath="$PROJECT_DIR$/src/AppBundle/DependencyInjection/MailerManager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DependencyInjection/NotifyManager.php" afterPath="$PROJECT_DIR$/src/AppBundle/DependencyInjection/NotifyManager.php" />
     </list>
     <ignored path="customerManager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,11 +58,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="birthday_email.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="birthday_email.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/customers_manager/services/birthday_email.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13953489">
+            <state vertical-scroll-proportion="-3.5294118">
               <caret line="4" column="119" selection-start-line="4" selection-start-column="119" selection-end-line="4" selection-end-column="119" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="services_navigation.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/customers_manager/partials/services_navigation.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.6470587">
+              <caret line="3" column="100" selection-start-line="3" selection-start-column="100" selection-end-line="3" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -86,10 +88,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServicesController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ServicesController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ServicesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="20.588236">
+            <state vertical-scroll-proportion="-0.7476744">
               <caret line="55" column="65" selection-start-line="55" selection-start-column="65" selection-end-line="55" selection-end-column="65" />
               <folding>
                 <element signature="e#2055#2108#0#PHP" expanded="true" />
@@ -1310,14 +1312,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/customers_manager/partials/services_navigation.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.6470587">
-          <caret line="3" column="100" selection-start-line="3" selection-start-column="100" selection-end-line="3" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Customer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.9411764">
@@ -1412,21 +1406,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/customers_manager/services/birthday_email.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.5294118">
+          <caret line="4" column="119" selection-start-line="4" selection-start-column="119" selection-end-line="4" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/customers_manager/partials/services_navigation.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6470587">
+          <caret line="3" column="100" selection-start-line="3" selection-start-column="100" selection-end-line="3" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ServicesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="20.588236">
+        <state vertical-scroll-proportion="-0.7476744">
           <caret line="55" column="65" selection-start-line="55" selection-start-column="65" selection-end-line="55" selection-end-column="65" />
           <folding>
             <element signature="e#2055#2108#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/customers_manager/services/birthday_email.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13953489">
-          <caret line="4" column="119" selection-start-line="4" selection-start-column="119" selection-end-line="4" selection-end-column="119" />
-          <folding />
         </state>
       </provider>
     </entry>
