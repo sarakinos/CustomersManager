@@ -1,0 +1,19 @@
+{% extends 'customers_manager/services/index.html.twig' %}
+
+{% block content %}
+    <div class="customers_birthday">
+        <a class="btn btn-success" href="{{ path('customer_manager_services_birthday_today_notify')}}">Send wishes!</a>
+        <div class="today-birthday">
+            <h2 class="alert alert-info">Today birthday</h2>
+            {% for customer in todayBirthday %}
+                {{ customer }}
+            {% endfor %}
+        </div>
+        <div class="month-birthday">
+            <h2 class="alert alert-info">Month birthday</h2>
+            {% for customer in monthBirthday %}
+                {{ customer }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
