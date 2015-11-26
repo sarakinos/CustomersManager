@@ -52,4 +52,35 @@ class CustomerManager
     {
         $this->em->flush();
     }
+
+    /**
+     * @return array
+     * Function gets all customers and filters throw their birthday date, capturing the ones with birthday date
+     * matching today or is in the month beeing.
+     * Returns an array with two keys , one containing the customers having birthday today and one
+     * containing the ones having birthday this month.
+     */
+    public function getBirthday()
+    {
+        $customers = $this->getAll();
+        $todayBirthday = [];
+        $monthBirthday = [];
+
+        $now = new \DateTime();
+        $today = $now->format("m/d");
+        $month = $now->format(('m'));
+
+        foreach ($customers as $customer) {
+            if ($customer->getBirthday()->format('m/d') == $today) {
+                $todayBirthday[] = $customer;
+            }
+            if ($customer->getBirthday()->format('m') == $month) {
+                $monthBirthday[] = $customer;
+            }
+        }
+        return $results = array(
+            'todayBirthday' => $todayBirthday,
+            'monthBirthday' => $monthBirthday
+        );
+    }
 }

@@ -33,6 +33,10 @@ class ServicesController extends Controller
         ));
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * Controller responsible for rendering the Appointment reminder template
+     */
     public function appointmentReminderAction()
     {
         $appointmentsOfTheWeek = $this->get('appointment_manager')->getAppointmentsByQuery(7);
@@ -47,6 +51,45 @@ class ServicesController extends Controller
         ;
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * Controller responsible for rendering the Birthday reminder template
+     */
+    public function birthdayMessageAction()
+    {
+        $customersManager = $this->get('customer_manager');
+        $customers = $customersManager->getBirthday();
+
+        return $this->render(
+            'customers_manager/services/birthday_email.html.twig',
+            array(
+                'todayBirthday' => $customers['todayBirthday'],
+                'monthBirthday' => $customers['monthBirthday']
+            )
+        );
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * Controller gets customers objects who has birthday and pass them to mailer managers
+     * sendBirthdayWishes function to handle the mail delivery
+     */
+    public function birthdayNotifyAction()
+    {
+        $customersManager = $this->get('customer_manager');
+        $customers = $customersManager->getBirthday();
+        $mailerManager = $this->get('mailer_manager');
+        $mailerManager->sendBirthdayWishes($customers['todayBirthday']);
+
+        return $this->forward('AppBundle:Services:birthdayMessage');
+    }
+
+    /**
+     * @param $by
+     * @return \Symfony\Component\HttpFoundation\Response
+     * Depending on the route slug ($by) , the controller calls the appropriate function
+     * on notify manager
+     */
     public function appointmentNotifyAction($by)
     {
         $notifyManager = $this->get('notify_manager');

@@ -43,6 +43,25 @@ class MailerManager
     }
 
     /**
+     * @param $customers
+     * @return bool
+     * Function iterates through $customers objects and send individual emails
+     * to each of them. To achieve this, it creates unique mail objects and pass
+     * them to sendMail function.
+     */
+    public function sendBirthdayWishes($customers)
+    {
+        foreach ($customers as $customer) {
+            $mail = new Mail();
+            $mail->setFrom($this->container->getParameter('mailer_user'));
+            $mail->setTo($customer);
+            $mail->setSubject('Happy BirthDay!');
+            $this->sendMail($mail, null, $customer);
+        }
+        return true;
+    }
+
+    /**
      * @param $appointments
      * @return bool
      * Calls send mail function for appointment reminder service
@@ -62,14 +81,15 @@ class MailerManager
     /**
      * @param $mail
      * @param null $appointment
+     * @param null $customer
      * @return bool
      * @throws \Twig_Error
      * Main mail send function , creates Swift Message instance and sends the mail.
      * Also configures the flash message for the template
      */
-    private function sendMail($mail, $appointment = null)
+    private function sendMail($mail, $appointment = null, $customer = null)
     {
-        $mailParameter = $this->generateTemplateParameters($mail, $appointment);
+        $mailParameter = $this->generateTemplateParameters($mail, $appointment, $customer);
         $mailTemplate = $mailParameter['mailTemplate'];
         $templateValues = $mailParameter['templateValues'];
 
@@ -86,7 +106,7 @@ class MailerManager
             );
         try {
             $this->container->get('mailer')->send($message);
-            $this->container->get('session')->getFlashBag()->add('notice', 'Message sent!');
+            $this->container->get('session')->getFlashBag()->set('notice', 'Message sent!');
             return true;
         } catch (\Swift_RfcComplianceException $exception) {
             // do something like proper error handling or log this error somewhere
@@ -124,11 +144,13 @@ class MailerManager
     /**
      * @param $mail
      * @param null $appointment
+     * @param null $customer
      * @return array
-     * Checks if previous action is from custom mail or appointment reminder service and sets the appropriate
+     * Checks if previous action is from custom mail, birthday mail (using the $customer variable)
+     * or appointment reminder service and sets the appropriate
      * template and values. Parameters are returned using an array
      */
-    private function generateTemplateParameters($mail, $appointment = null)
+    private function generateTemplateParameters($mail, $appointment = null, $customer = null)
     {
         if ($appointment!=null) {
             $mailTemplate = 'customers_manager/emails/appointment_reminder.html.twig';
@@ -141,12 +163,24 @@ class MailerManager
                 'templateValues' => $templateValues
             );
         }
-            $mailTemplate = 'customers_manager/emails/custom_email.html.twig';
+
+        if ($customer!=null) {
+            $mailTemplate = 'customers_manager/emails/birthday_wishes.html.twig';
             $templateValues = array(
-                'customer' => $mail->getTo(),
-                'body' => $mail->getBody()
+                'customer' => $customer,
             );
             return array(
+                'mailTemplate' => $mailTemplate,
+                'templateValues' => $templateValues
+            );
+        }
+
+        $mailTemplate = 'customers_manager/emails/custom_email.html.twig';
+        $templateValues = array(
+            'customer' => $mail->getTo(),
+            'body' => $mail->getBody()
+        );
+        return array(
             'mailTemplate' => $mailTemplate,
             'templateValues' => $templateValues
             );

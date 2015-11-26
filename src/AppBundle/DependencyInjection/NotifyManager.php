@@ -18,7 +18,7 @@ class NotifyManager
     private $em;
     private $container;
 
-    public function __construct(EntityManager $em,ContainerInterface $container)
+    public function __construct(EntityManager $em, ContainerInterface $container)
     {
         $this->em = $em;
         $this->container = $container;

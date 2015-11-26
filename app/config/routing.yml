@@ -78,6 +78,14 @@ customer_manager_services_index:
     path: /services
     defaults: { _controller:AppBundle:Services:index}
 
+customer_manager_services_birthday_message:
+    path: /services/birthday
+    defaults: { _controller:AppBundle:Services:birthdayMessage}
+
+customer_manager_services_birthday_today_notify:
+    path: /services/birthday/notify/today
+    defaults: { _controller:AppBundle:Services:birthdayNotify}
+
 customer_manager_services_custom_message:
     path: /services/custom
     defaults: { _controller:AppBundle:Services:customMessage}
